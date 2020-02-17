@@ -54,6 +54,27 @@
         document.writeln( doFun2(10) === 1 );
         document.writeln( doFun2()   === 1 );
 
+        document.writeln("Notes")
+        // function id(x){
+        //     return x;
+        // }
+        // const x_ = Math.random();
+        
+        // document.writeln(id(x_) === x_);
+
+        const plus = n => arg => {
+            return n + arg;
+        }
+
+        const plus2 = n => arg => n + arg;
+        
+        //const doit2 = callme => arg => callme(arg) ;
+
+        const x_ = Math.random();
+        const y_ = Math.random();
+        const plus3 = plus2(3);
+        document.writeln(plus2(x_)(y_) === x_ + y_ && plus3(y_) === y_ + 3);
+
     </script>
     </pre>
 </body>
