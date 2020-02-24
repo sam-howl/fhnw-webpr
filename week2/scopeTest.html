@@ -5,13 +5,29 @@
     <title>Scope Tests</title>
 </head>
 <body>
-    <script>
+    <pre><script>
+        const id = x => x;
+        const fst = x => y => x; //konst
+
+        //const snd = x => y => y;
+        // create snd with id and fst only without any additional argument
+        //const snd = x => id;
+        const snd = fst(id);
 
 
+        document.writeln(id(1));
+        document.writeln(id);
+        document.writeln(id(id) === id);
+        document.writeln(fst(id)() === id);
+        document.writeln(fst(id)("asdf") === id);
+        document.writeln(fst(id)(1) === id);
 
+        const one = fst(1); // always returns 1
 
+        document.writeln(one(1000) === 1);
+        document.writeln(snd(1000)(1) === 1);
 
-    </script>
+    </script></pre>
 </body>
 </html>
 
