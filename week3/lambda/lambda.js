@@ -1,10 +1,42 @@
 
+const id = x => x;
+const fst = x => y => x;
+const snd = x => y => y;
 
+const M = f => f(f);
+
+const konst = fst;
+
+const T = fst; // church encoding
+const F = snd;
+
+//const and = first => second => first ( second (T) (F) ) ( second (F) (F) );
+//const and = first => second => first ( second (T) (F) ) ( F )
+//const and = first => second => first ( second ) ( F );
+const and = first => second => first ( second ) ( first );
+
+//const or = first => second => first ( second (T) (T) ) ( second (T) (F) );
+//const or = first => second => first ( T ) ( second (T) (F) );
+//const or = first => second => first ( first ) ( second );
+//const or = first => first ( first );
+//const or = first => M ( first );
+const or = M;
+
+const Pair = first => second => f => f (first) (second);
+const firstname = fst;
+const lastname = snd;
+
+const Left = msg => f => g => f(msg);
+const Right = res => f => g => g(res);
+//const either = e => f => g => e (f) (g);
+// const either = e => f => e (f);
+// const either = e => e;
+const either = id;
 
 // ----- special -----
 
 const Tuple = n => [
-    parmStore (n + 1) ( [] ) (parms => parms.reduce( (accu, it) => accu(it), parms.pop() ) ), // ctor
+    parmStore (n + 1) ( [] ) (parms => parms.reduce( (accu, it) => accu(it), parms.pop() ) ), // constructor
     ...Array.from( {length:n}, (it, idx) => iOfN (n) (idx) () )                    // selectors
 ];
 
