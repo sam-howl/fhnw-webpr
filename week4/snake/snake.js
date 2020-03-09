@@ -20,13 +20,13 @@ let snake = [
 let food = Pair(15)(15);
 
 // function snakeEquals(a, b) { return a.x === b.x && a.y === b.y }
-const pairEq = a => b =>  undefined; // todo: your code here
+const pairEq = a => b => a(fst) === b(fst) && a(snd) === b(snd);
 
 // Pair + Pair = Pair        // Monoid
-const pairPlus = a => b =>  undefined; // todo: your code here
+const pairPlus = a => b => Pair(a(fst) + b(fst))(a(snd) + b(snd)); // todo: your code here
 
 // Function and Pair = Pair  // Functor
-const pairMap = f => p =>  undefined; // todo: your code here
+const pairMap = f => p => Pair(f(p(fst)))(f(p(snd))); // todo: your code here
 
 
 function changeDirection(orientation) {
@@ -41,7 +41,9 @@ function changeDirection(orientation) {
 */
 function safeGetElementById(id) {
     let result = document.getElementById(id);
-    return result === undefined; // todo: your code here
+    return result === undefined 
+        ? Left("element with id " + id + "not found!")
+        : Right(result);
 }
 
 const log = s => console.log(s);
@@ -49,7 +51,9 @@ const log = s => console.log(s);
 function start() {
 
     // todo: if safeGetElementById("canvas") yields an error message, log it. Otherwise startWithCanvas
-
+    either(safeGetElementById("canvas"))
+        (msg => console.log(msg))       //error case
+        (el => startWithCanvas(el))     //ok case
 }
 
 const startWithCanvas = canvas => {
