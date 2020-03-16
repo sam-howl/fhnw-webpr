@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>All Tests</title>
-</head>
-<body>
+  </head>
+  <body>
+    <script>
+      const tests = ["function", "lambda", "snake"];
+      //"hack" to undermine browser security
+      //   document.writeln('<script src="function/function.js"></' + 'script>');
 
-    <script src="function/function.js"></script>
-    <script src="function/functionTest.js"></script>
-
-    <script src="lambda/lambda.js"></script>
-    <script src="lambda/lambdaTest.js"></script>
-
-    <script src="snake/snake.js"></script>
-    <script src="snake/snakeTest.js"></script>
-
-
-</body>
+      tests.forEach(testName => {
+        document.writeln(
+          `<script src="${testName}/${testName}.js"></` + "script>"
+        );
+        document.writeln(
+          `<script src="${testName}/${testName}Test.js"></` + "script>"
+        );
+      });
+    </script>
+  </body>
 </html>

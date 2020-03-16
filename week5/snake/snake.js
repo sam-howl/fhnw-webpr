@@ -46,9 +46,15 @@ const log = s => console.log(s);
 
 function start() {
 
-    either (safeGetElementById("canvas"))
-           (log)
-           (startWithCanvas);
+    // either (safeGetElementById("canvas"))
+    //        (log)
+    //        (startWithCanvas);
+    // id (safeGetElementById("canvas"))
+    //        (log)
+    //        (startWithCanvas);
+    safeGetElementById("canvas")
+        (log)
+        (startWithCanvas);
 }
 
 const startWithCanvas = canvas => {
