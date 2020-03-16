@@ -124,13 +124,13 @@ let b = 1;
 eval("b=2;") //gives back 2 and b is now 2
 ```
 
-* be aware that eval can be misused
+* be aware that eval can be misused (eval is executed in global scope)
 
 ```javascript
 display(context, x => eval(userFunction.value, x)) //user can give in alert("you got hacked");
 ```
 
-* to prevent side effects
+* to prevent side effects (Function will not be executed in global scope)
 
 ```javascript
 const f = Function('x', 'return ' + userFunction.value);
