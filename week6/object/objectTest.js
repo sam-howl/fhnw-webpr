@@ -20,9 +20,9 @@
     // remember: calling a function retains the scope
 
     const good = Person("Good", "Boy");      // "accidentally" forgot the "new"
-    ok.push( good.getName() === "Good Boy");
+    ok.push( good.getName() === "Good Boy"); // function is this
 
-    const other = Person("Other", "Boy");
+    const other = Person("Other", "Boy"); //only one instance (the function itself), therefore good boy is overwritten
     ok.push(other.getName() === "Other Boy");
     ok.push(good.getName()  === "Other Boy"); // OOPS! We have accidentally overwritten the good boy.
 
