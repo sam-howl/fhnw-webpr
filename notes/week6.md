@@ -8,6 +8,7 @@
 
 * this is different from JavaScript than this is in Java
 * Open, dynamic: no safety but dynamic, unobvious how to share structure
+* Open and dynamic because 'this' is used
 
 ```javascript
 const good = {
@@ -20,6 +21,7 @@ const good = {
 ```
 
 * Closed, explicit: best safety, easy to share structure, but no class:
+* Closed because no 'this'
 
 ```javascript
 function Person(first, last) {
