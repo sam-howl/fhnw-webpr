@@ -90,39 +90,119 @@
       //       return this.firstname + " " + this.lastname;
       // };
 
-      Array.prototype.eq = function(y) {
-        if (this.length !== y.length){
-          return false;
-        }
-        for (let i = 0; i < this.length; i++){
-          if (this[i] !== y[i]){
-            return false;
-          }
-        }
-        return true;
-      };
+      // Array.prototype.eq = function(y) {
+      //   if (this.length !== y.length){
+      //     return false;
+      //   }
+      //   for (let i = 0; i < this.length; i++){
+      //     if (this[i] !== y[i]){
+      //       return false;
+      //     }
+      //   }
+      //   return true;
+      // };
 
       // function eq (x, y) {
       //   return x.length == y.length;
       // }
 
-      xs1_ = [1,2,3]
-      ys1_ = [1,2,3]
-      xs2_ = [1,2,3,4,5]
-      ys2_ = [1,2,2]
+      // xs1_ = [1,2,3]
+      // ys1_ = [1,2,3]
+      // xs2_ = [1,2,3,4,5]
+      // ys2_ = [1,2,2]
       
 
-      document.writeln(
-        xs1_.eq(ys1_) &&
-        !xs1_.eq(xs2_) &&
-        !ys1_.eq(ys2_)
+      // document.writeln(
+      //   xs1_.eq(ys1_) &&
+      //   !xs1_.eq(xs2_) &&
+      //   !ys1_.eq(ys2_)
 
         // xs1_.eq(ys1_) &&
         //   !xs2_.eq(ys2_) &&
         //   xs3_.eq(ys3_) &&
         //   !xs3_.eq(ys4_) &&
         //   !xs4_.eq(ys3_)
-      );
+      // );
+
+      // 3 4 6 zweitletztes
+
+      // class Person {
+      //   isCool() {
+      //     return this.name.length > 3;
+      //     //return name === 'Dierk'
+      //   }
+      // }
+
+      // const p = new Person();
+      // p.name = "Dierk";
+      // //document.writeln(p.name === "Dierk")
+      // // const joe = {
+      // //   name: "joe",
+      // //   cool: p.isCool
+      // // };
+      // //p.isCool = () => true;
+      // //Person.prototype.isCool = () => true;
+      // document.writeln(p.isCool())
+      // //document.writeln(joe.cool())
+
+        // richtig 1 2 4 6 7 8 9
+
+      // class Person {
+      //   constructor(name) {
+      //     this.name = name;
+      //   }
+      //   isCool() {
+      //     return this.name.length > 3
+      //   }
+      // }
+      // const p = new Person("Dierk");
+      // document.writeln(p instanceof Person);
+
+      // class Person { }
+      // class Student extends Person { }
+      // // // const p = { };
+      // // // Object.setPrototypeOf(p, Person.prototype);
+      // // // document.writeln(p instanceof Person);
+      // // // class Student extends Person {}
+      // const s = new Student();
+      // //Object.setPrototypeOf(Student.prototype, Person.prototype)
+      // document.writeln(s instanceof Person);
+
+//       Q16a
+// Assignment: Function composition
+// Attempt number 1 of at most 3 attempts
+
+// JavaScript is functional and functional languages should provide function composition.
+// Let's assume we have functions like
+//  const inc    = x => x + 1;
+//  const double = x => x * 2;
+// Provide a general function 'then' that can combine _any_ such functions such that
+//  inc.then(double).then(double)
+// can be used like
+//  inc.then(double).then(double) (1) === 8  
+
+// Note: you cannot assume what the functions are actually doing. 
+// It must work for all functions!
+
+// Remaining chars: 512
+// Your solution will be tested against:
+
+// add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_
+
+      const inc    = x => x + 1;
+      const double = x => x * 2;
+
+      //try this first
+      Object.prototype.then = function(callback) {
+        return () => callback(this)
+      }
+
+      Object.prototype.then = function(callback) {
+        return (value) => callback(this(value))
+      }
+
+      document.writeln(inc.then(double).then(double) (1) === 8)
+
     </script>
   </body>
 </html>
