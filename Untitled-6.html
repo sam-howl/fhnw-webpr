@@ -1,0 +1,128 @@
+<html>
+  <head> </head>
+  <body>
+    <script>
+      // const Left = x => f => g => f(x);
+      // const Right = x => f => g => g(x);
+      // const either = e => f => g => e(f)(g);
+      // const id = x => x;
+
+      // const eShow = res => res(id)(g => "Result is: " + g);
+
+      // const x_ = Math.random();
+      // const safeDiv = num => divisor =>
+      //   divisor === 0 ? Left("Cannot divide by 0") : Right(num / divisor);
+
+      // console.log(
+      //   eShow(safeDiv(1)(0)) === "Cannot divide by 0" &&
+      //     eShow(safeDiv(x_)(1)) === "Result is: " + x_
+      // );
+      // const twice = x => x * 2;
+      // console.log([1,2,3].map(twice).toString() === "2,4,6")
+
+      // const divides = x => y => y % x === 0;
+      // console.log([1,2,3,4,5,6].filter(divides(3)).toString() === "3,6")
+
+      // const join = x => (accu, cur) => accu + x + cur;
+      // console.log([1,2,3].reduce(join('-')))
+      // console.log([1,2,3].reduce(join('-')) === '1-2-3')
+
+      //const bonusFormula = x => x.revenue * 0.2;
+      // const bonusFormula = employee => employee.revenue * 0.2
+
+      //const bonusCalculation = x => e.bonus = eval(bonusFormula(x));
+
+      //let bonusCalculation = (employee) => employee.bonus = eval(bonusFormula)
+
+      //const bonusCalculation = Function(e.bonus = bonusFormula(e.revenue));
+
+      // function bonusCalculation (employee) {
+      //   let usrFunc = Function('employee', 'return ' + bonusFormula);
+      //   employee.bonus = usrFunc(employee);
+      // }
+
+      // let bonusCalculation = (employee) => {
+      //     let f = Function('employee', 'return ' + bonusFormula);
+      //     employee.bonus = f(employee)
+      // }
+
+      // const e = {revenue: 10000, bonus: null};
+      // bonusCalculation(e);
+      // const factor_ = 0.2;
+      // console.log(e.bonus === e.revenue * factor_);
+
+      // true: 1, 3
+
+      // function Empty() { }
+
+      // // const Empty = ( () => {
+      // //   function Empty() { }
+      // //   return Empty;
+      // // }) ();
+
+      // const empty = new Empty;
+      // // const also = new Empty;
+
+      // Empty.prototype.answer = 42;
+
+      // // document.writeln(
+      // //   empty.answer === 42 && also.answer === 42
+      // // );
+
+      // document.writeln(empty.answer === 42);
+
+      // const Person = name => {
+      //   let age = 0;
+      //   return {
+      //     getAge: () => age,
+      //     setAge: newAge => age = newAge,
+      //     getName: () => name,
+      //     setName: newName => name = newName
+      //   }
+      // };
+
+      // const me = Person("Myself");
+      // //me.name = "***"
+      // me.setName("Sherlock");
+      // document.writeln(me.getName() === "Sherlock")
+
+      // Person.prototype.getName = function() {  // functions are shared through the prototype // "=>" not allowed!
+      //       return this.firstname + " " + this.lastname;
+      // };
+
+      Array.prototype.eq = function(y) {
+        if (this.length !== y.length){
+          return false;
+        }
+        for (let i = 0; i < this.length; i++){
+          if (this[i] !== y[i]){
+            return false;
+          }
+        }
+        return true;
+      };
+
+      // function eq (x, y) {
+      //   return x.length == y.length;
+      // }
+
+      xs1_ = [1,2,3]
+      ys1_ = [1,2,3]
+      xs2_ = [1,2,3,4,5]
+      ys2_ = [1,2,2]
+      
+
+      document.writeln(
+        xs1_.eq(ys1_) &&
+        !xs1_.eq(xs2_) &&
+        !ys1_.eq(ys2_)
+
+        // xs1_.eq(ys1_) &&
+        //   !xs2_.eq(ys2_) &&
+        //   xs3_.eq(ys3_) &&
+        //   !xs3_.eq(ys4_) &&
+        //   !xs4_.eq(ys3_)
+      );
+    </script>
+  </body>
+</html>
