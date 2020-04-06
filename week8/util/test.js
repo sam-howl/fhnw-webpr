@@ -7,6 +7,7 @@ const Assert = () => {
     const equals = (actual, expected) => {
         const result = (actual === expected);
         if (! result) {
+           debugger; // can use the debugger console in the browser
            console.error(`not equal! actual was '${actual}' but expected '${expected}'`);
         }
         ok.push(result);

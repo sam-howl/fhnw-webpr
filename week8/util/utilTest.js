@@ -15,7 +15,7 @@ test("util-times1", assert => {
 
 }) ;
 
-
+// only for lexical block
 ( () => {
     let ok = [];
 
