@@ -1,9 +1,6 @@
 # Week 8
 
 ```javascript
-```
-
-```javascript
 const plusOne = x => x + 1;
 const timesTwo = x => x * 2;
 timesTwo(plusOne(0)) // 2
