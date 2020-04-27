@@ -279,40 +279,323 @@
       // color.setValue('black')
       // document.writeln(observed === color.getValue())
 
-      const Observable = value => {
-    const listeners = [];
+//       const Observable = value => {
+//     const listeners = [];
+//     return {
+//         onChange: callback => {
+//             listeners.push(callback);
+//             callback(value, value);
+//         },
+//         getValue: ()       => value,
+//         setValue: newValue => {
+//             if (value === newValue) return;
+//             const oldValue = value;
+//             value = newValue;
+//             listeners.forEach(callback => callback(value, oldValue));
+//         }
+//     }
+// };
+
+// let sum = 0;                                 
+// const trackable = Observable(0);
+
+// // Use 'trackable' such that it keeps track of the sum of all values 
+// // that have been set to it in 'sum'.
+
+// trackable.onChange(val => sum = sum + val);
+
+// const x_ = 1;
+// const y_ = 2;
+// const z_ = 3;
+
+// trackable.setValue(x_); // values x_, y_, z_ are given. Do not override.
+// trackable.setValue(y_);
+// trackable.setValue(z_);
+
+// document.writeln(trackable.getValue() === z_ && sum === x_ + y_ + z_)
+
+    // WEEK 10
+    // 1 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // const filterEven = n => n % 2 === 0 ? n : undefined;
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(filterEven)
+    //   .then(writer);
+
+    // 2 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // const filterEven = n => { if (n % 2 === 0) return n; else throw Error("not even")};
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(filterEven)
+    //   .then(writer)
+    //   .catch(err => {});
+
+    // 3 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // document.writeln(idPromise(1))
+
+    // 4 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // const filterEven = n => n % 2 === 0 ? n : undefined;
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(filterEven)
+    //   .then(writer);
+
+    // 5 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // idPromise(1)
+    //   .then(it => document.writeln(it))
+
+    // 6 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(it => document.writeln(it))
+
+    // 7 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // idPromise(1)
+    //   .then(it => document.writeln(it))
+    //   .then(it => document.writeln(it))
+
+    // 8 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // idPromise(1)
+    //   .then(it => {document.writeln(it); return idPromise(it)})
+    //   .then(it => document.writeln(it))
+
+    //9 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // idPromise(1)
+    //   .then(it => it)
+    //   .then(it => document.writeln(it))
+
+    //10 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // const inc = n => n+1;
+    // const filterEven = n => n % 2 === 0 ? n : undefined;
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(inc)
+    //   .then(writer)
+    //   .then(filterEven)
+    //   .then(writer);
+
+    // 11 - shows only 1 --> false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // const filterEven = n => { if (n % 2 === 0) return n; else throw Error("not even")};
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(filterEven)
+    //   .then(writer)
+    //   .catch(err => {});
+
+    // 12 - 1 undefined - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // const filterEven = n => n % 2 === 0 ? n : undefined;
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(filterEven)
+    //   .then(writer);
+
+    // 13 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // idPromise(1)
+    //   .then(it => {document.writeln(it); return it;})
+    //   .then(it => document.writeln(it));
+
+    // 14 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // };
+    // idPromise(1)
+    //   .then(writer)
+    //   .then(it => it + 1)
+    //   .then(writer);
+
+    // 15 - true
+
+    // async await
+
+    // 1 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const failPromise = err => new Promise( (resolve, reject) => reject(err));
+
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // }
+
+    // const inc = n => idPromise(n + 1);
+    // const filterEven = n => n % 2 === 0 ? idPromise(n) : failPromise("not even");
+
+    // const foo = async i => {
+    //   let x = await idPromise(i);
+    //   while (x < 4) {
+    //     x = await filterEven(x).catch( err => {});
+    //     x = await writer(x);
+    //     x = await inc(x);
+    //   }
+    // }
+    // foo(1);
+
+    // 2 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const failPromise = err => new Promise( (resolve, reject) => reject(err));
+
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // }
+
+    // const inc = n => idPromise(n + 1);
+    // const filterEven = n => n % 2 === 0 ? idPromise(n) : failPromise("not even");
+
+    // const foo = async i => {
+    //   let x = await idPromise(i);
+    //   while (x < 4) {
+    //     x = await filterEven(x);
+    //     x = await writer(x);
+    //     x = await inc(x);
+    //   }
+    // }
+    // foo(1);
+
+    // 3 - false
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const failPromise = err => new Promise( (resolve, reject) => reject(err));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // }
+
+    // const foo = async i => {
+    //   let x = await idPromise(i);
+    //   x.then(writer)
+    // }
+    // foo(1);
+
+    // 4 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const failPromise = err => new Promise( (resolve, reject) => reject(err));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // }
+
+    // const foo = async i => {
+    //   let x = await idPromise(i);
+    //   x = await writer(x);
+    // }
+    // foo(1);
+
+    // 5 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const failPromise = err => new Promise( (resolve, reject) => reject(err));
+
+    // const foo = async i => {
+    //   let x = await idPromise(i);
+    //   document.writeln(x);
+    // }
+    // foo(1);
+
+    // 6 - 
+    // 4 - true
+    // const idPromise = x => new Promise( resolve => resolve(x));
+    // const failPromise = err => new Promise( (resolve, reject) => reject(err));
+    // const writer = x => {
+    //   document.writeln(x);
+    //   return idPromise(x);
+    // }
+
+    // const inc = n => idPromise(n + 1);
+
+    // const foo = async i => {
+    //   let x = await idPromise(i);
+    //   while (x < 4) {
+    //     x = await writer(x);
+    //     x = await inc(x);
+    //   }
+    // }
+    // foo(1);
+
+    /*
+    *Copy* the following code into the edit area and fill the ___ gaps.
+
+const NullSafe = x => {
+    const isNullSafe = y => y && y.then;
+    const maywrap    = y => ___ ; // if y is not NullSafe yet, make it so
     return {
-        onChange: callback => {
-            listeners.push(callback);
-            callback(value, value);
-        },
-        getValue: ()       => value,
-        setValue: newValue => {
-            if (value === newValue) return;
-            const oldValue = value;
-            value = newValue;
-            listeners.forEach(callback => callback(value, oldValue));
-        }
+       then: fn => ___ // see(1)
     }
 };
 
-let sum = 0;                                 
-const trackable = Observable(0);
+(1) if x is not null or undefined, call fn(x); either way, make sure the result is a NullSafe 
 
-// Use 'trackable' such that it keeps track of the sum of all values 
-// that have been set to it in 'sum'.
+Fill the gaps such that NullSafe objects can be chained with their "then" function
+just like Promises do, incl. auto-promotion of result values to NullSafe objects.
 
-trackable.onChange(val => sum = sum + val);
+NullSafe(1).then(console.log);                   // will call the log
+NullSafe(null).then(console.log);                // will not call the log
+NullSafe(2).then( x => null).then(console.log);  // will not call the log
+    */
 
-const x_ = 1;
-const y_ = 2;
-const z_ = 3;
+// const NullSafe = x => {
+//     const isNullSafe = y => y && y.then;
+//     const maywrap    = y => isNullSafe(y) ? y : NullSafe(y);
+//     return {
+//        then: fn => {
+//          if (x !== null && x !== undefined){
+//            return maywrap(fn(x));
+//          } else {
+//            return maywrap(x);
+//          }
+//        }
+//     }
+// };
 
-trackable.setValue(x_); // values x_, y_, z_ are given. Do not override.
-trackable.setValue(y_);
-trackable.setValue(z_);
+// let x_ = 1
+// let y_ = 0
 
-document.writeln(trackable.getValue() === z_ && sum === x_ + y_ + z_)
+// console.log(NullSafe(x_)
+//       .then( x => x*2)          // must auto-promote
+//       .then( x => NullSafe(x))  // must not auto-promote
+//       .then( x => y_ = x + 1)   // store value, check no double promotion
+//       .then( x => null)         // jump over rest
+//       .then( x => x.mustNotBeCalled) !== null && y_ === x_ * 2 + 1)
 
     </script>
   </body>
