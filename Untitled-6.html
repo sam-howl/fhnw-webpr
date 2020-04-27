@@ -189,19 +189,130 @@
 
 // add.then(mult).then(add) (1) === (1 + add_) * factor_ + add_
 
-      const inc    = x => x + 1;
-      const double = x => x * 2;
+      // const inc    = x => x + 1;
+      // const double = x => x * 2;
 
-      //try this first
-      Object.prototype.then = function(callback) {
-        return () => callback(this)
-      }
+      // //try this first
+      // Object.prototype.then = function(callback) {
+      //   return () => callback(this)
+      // }
 
-      Object.prototype.then = function(callback) {
-        return (value) => callback(this(value))
-      }
+      // Object.prototype.then = function(callback) {
+      //   return (value) => callback(this(value))
+      // }
 
-      document.writeln(inc.then(double).then(double) (1) === 8)
+      // document.writeln(inc.then(double).then(double) (1) === 8)
+
+
+      // const Observable = value => {
+      //   const listeners = [];
+      //   return {
+      //     onChange: callback => listeners.push(callback),
+      //     getValue: () => value,
+      //     setValue: val => {
+      //       if (value === val) return;
+      //       value = val;
+      //       listeners.forEach(listener => listener(val));
+      //     }
+      //   }
+      // }
+
+      // true
+      // const color = Observable('white');
+      // let updateCount = 0;
+      // color.onChange (_ => updateCount++);
+      // color.setValue('black');
+      // document.writeln( updateCount === 1 )
+
+      // false
+      // const color = Observable('white');
+      // let observed = null;
+      // color.onChange ( val => observed = val);
+      // document.writeln( observed === color.getValue() )
+
+      // false
+      // const color = Observable('white');
+      // let updateCount = 0;
+      // color.onChange( _ => updateCount++);
+      // color.setValue('white');
+      // document.writeln(updateCount === 1)
+
+      // true
+      // const color = Observable('white');
+      // document.writeln(color.getValue() === 'white')
+
+      // true
+      // const color = Observable('white');
+      // color.setValue('black')
+      // document.writeln(color.getValue() === 'black')
+
+      // false
+      // const color = Observable('white');
+      // color.value = 'black'
+      // document.writeln(color.getValue() === 'black')
+
+      // true
+      // const color = Observable('white');
+      // let observed = color.getValue();
+      // color.onChange(val => observed = val)
+      // document.writeln(observed === color.getValue())
+
+      // true
+      // const color = Observable('white')
+      // let updateCount = 0;
+      // color.onChange( _ => updateCount++)
+      // color.setValue('black')
+      // color.setValue('white')
+      // document.writeln(updateCount === 2)
+
+      // false
+      // const color = Observable('white')
+      // let updateCount = 0;
+      // const updateListener = val => updateCount++;
+      // color.setValue('black')
+      // document.writeln(updateCount === 1)
+
+      // true
+      // const color = Observable('white')
+      // let observed = null;
+      // color.onChange (val => observed = val)
+      // color.setValue('black')
+      // document.writeln(observed === color.getValue())
+
+      const Observable = value => {
+    const listeners = [];
+    return {
+        onChange: callback => {
+            listeners.push(callback);
+            callback(value, value);
+        },
+        getValue: ()       => value,
+        setValue: newValue => {
+            if (value === newValue) return;
+            const oldValue = value;
+            value = newValue;
+            listeners.forEach(callback => callback(value, oldValue));
+        }
+    }
+};
+
+let sum = 0;                                 
+const trackable = Observable(0);
+
+// Use 'trackable' such that it keeps track of the sum of all values 
+// that have been set to it in 'sum'.
+
+trackable.onChange(val => sum = sum + val);
+
+const x_ = 1;
+const y_ = 2;
+const z_ = 3;
+
+trackable.setValue(x_); // values x_, y_, z_ are given. Do not override.
+trackable.setValue(y_);
+trackable.setValue(z_);
+
+document.writeln(trackable.getValue() === z_ && sum === x_ + y_ + z_)
 
     </script>
   </body>
