@@ -8,7 +8,20 @@
 
 <script>
 
+    // new RegExp("asdf","i") // regex, flag
 
+    //const expr = /webpr/i;
+    //document.writeln("WebPr".match(expr))
+
+    const expr = /love\s+webpr/i;
+    //const expr = /^.*webpr.*$/i;
+    document.writeln("I love WebPr!".match(expr))
+
+    const expr2 = /love\s+webpr/i;
+    document.writeln("I love WebPr!".replace(expr2, "love love love webpr"))
+
+    const expr3 = /love\s+(webpr)/i;
+    document.writeln("I love WebPr!".replace(expr3, "love love love $1"))
 
 </script>
 

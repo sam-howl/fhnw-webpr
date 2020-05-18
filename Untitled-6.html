@@ -828,12 +828,12 @@ NullSafe(2).then( x => null).then(console.log);  // will not call the log
 
 
 // *******************************
-const DataFlowVariable = howto => {
-    let value = undefined;
-    return () => undefined === value
-                 ? value = howto()
-                 : value;
-};
+// const DataFlowVariable = howto => {
+//     let value = undefined;
+//     return () => undefined === value
+//                  ? value = howto()
+//                  : value;
+// };
 // 1 - true
 // const x = DataFlowVariable(() => y() * 2);
 // let y = DataFlowVariable(() => 1);
@@ -860,10 +860,51 @@ const DataFlowVariable = howto => {
 // document.writeln(x());
 
 // 5 - false
-const x = DataFlowVariable(() => y() * 2);
-let y = DataFlowVariable(() => 1);
-y = DataFlowVariable(() => 2);
-document.writeln(x());
+// const x = DataFlowVariable(() => y() * 2);
+// let y = DataFlowVariable(() => 1);
+// y = DataFlowVariable(() => 2);
+// document.writeln(x());
+
+  // 18.05.2020
+  /*
+  Implement a function named 'palindrome' that tells whether a given string
+  is the same when read left-to-right and right-to-left, ignoring upper/lowercase differences
+  and any characters outside 'a' to 'z'. For example
+  palindrome('ABBA')  // true
+  palindrome('Abba')  // true
+  palindrome('A man, a plan, a canal: Panama!') // true
+
+  You must use the following helper functions (they are provided):
+  const str2chars = str  => [...str];            // convert a string to an array of chars
+  const isAlpha   = char => char.match(/[a-z]/); // char is in the alphabet
+
+  The question title contains implementation hints.
+  */
+
+  const str2chars = str  => [...str];            // convert a string to an array of chars
+  const isAlpha   = char => char.match(/[a-z]/); // char is in the alphabet
+
+  const palindrome = value => {
+    let charArray = str2chars(value.toLowerCase());
+    let alphaCharArray = charArray.filter(element => isAlpha(element))
+    let i = 0;
+    let j = alphaCharArray.length-1;
+    console.log(alphaCharArray)
+    while(i <= j){
+      if (alphaCharArray[i] === alphaCharArray[j]){
+        i++;
+        j--;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  document.writeln(palindrome("Amore, Roma!"))
+  document.writeln(palindrome("Madam, I'm Adam!") )
+  document.writeln(palindrome("Never odd or even.") )
+  document.writeln(!palindrome("Amore"))
 
     </script>
   </body>
