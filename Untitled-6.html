@@ -881,31 +881,60 @@ NullSafe(2).then( x => null).then(console.log);  // will not call the log
   The question title contains implementation hints.
   */
 
-  const str2chars = str  => [...str];            // convert a string to an array of chars
-  const isAlpha   = char => char.match(/[a-z]/); // char is in the alphabet
+  // const str2chars = str  => [...str];            // convert a string to an array of chars
+  // const isAlpha   = char => char.match(/[a-z]/); // char is in the alphabet
 
-  const palindrome = value => {
-    let charArray = str2chars(value.toLowerCase());
-    let alphaCharArray = charArray.filter(element => isAlpha(element))
-    let i = 0;
-    let j = alphaCharArray.length-1;
-    console.log(alphaCharArray)
-    while(i <= j){
-      if (alphaCharArray[i] === alphaCharArray[j]){
-        i++;
-        j--;
-      } else {
-        return false;
-      }
-    }
-    return true;
-  }
+  // const palindrome = value => {
+  //   let charArray = str2chars(value.toLowerCase());
+  //   let alphaCharArray = charArray.filter(element => isAlpha(element))
+  //   let i = 0;
+  //   let j = alphaCharArray.length-1;
+  //   console.log(alphaCharArray)
+  //   while(i <= j){
+  //     if (alphaCharArray[i] === alphaCharArray[j]){
+  //       i++;
+  //       j--;
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // }
 
-  document.writeln(palindrome("Amore, Roma!"))
-  document.writeln(palindrome("Madam, I'm Adam!") )
-  document.writeln(palindrome("Never odd or even.") )
-  document.writeln(!palindrome("Amore"))
+  // document.writeln(palindrome("Amore, Roma!"))
+  // document.writeln(palindrome("Madam, I'm Adam!") )
+  // document.writeln(palindrome("Never odd or even.") )
+  // document.writeln(!palindrome("Amore"))
 
+
+  // const door = {open: false};
+  // const open = door => {
+  //   let result = "open";
+  //   door.open && (result = "already open")
+  //   door.open = true;
+  //   return result;
+  // }
+
+  // document.writeln("door is ");
+  // document.writeln(open(door) || "closed")
+
+  /*
+  provide code like
+const value = ____;
+where you replace the ____ placeholder with a value that will yield 
+different results when used in
+if (value) ...
+as opposed to 
+if (value == true)*/
+
+// const value = +"5";
+
+
+// document.writeln((value ? true : false) !== (value == true ? true : false))
+    
+    //const value = {};
+    const value = new Object;
+    document.writeln((({} == value) === false) && (({} > value) === false) && (({} >= value) === true))
     </script>
   </body>
 </html>
